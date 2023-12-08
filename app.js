@@ -1,21 +1,17 @@
-// Complete Project Details at: https://RandomNerdTutorials.com/
-
-//const { database } = require("firebase-admin");
-
 // Database Paths
 var dataFloatPath = 'test/float';
 var dataIntPath = 'test/int';
-var dataStrPath=  'test/str';
+var dataStrPath = 'test/str';
 
 // Get a database reference 
-const databaseFloat = database.ref(dataFloatPath);
-const databaseInt = database.ref(dataIntPath);
-const databaseStr=database.ref(dataStrPath);
+const databaseFloat = firebase.database().ref(dataFloatPath);
+const databaseInt = firebase.database().ref(dataIntPath);
+const databaseStr = firebase.database().ref(dataStrPath);
+
 // Variables to save database current values
 var floatReading;
 var intReading;
 var strReading;
-
 
 // Attach an asynchronous callback to read the data
 databaseFloat.on('value', (snapshot) => {
@@ -41,3 +37,15 @@ databaseStr.on('value', (snapshot) => {
 }, (errorObject) => {
     console.log('The read failed: ' + errorObject.name);
 });
+
+function writeData() {
+    // Get user input from input fields
+    var floatInput = document.getElementById("input-float").value;
+    var intInput = document.getElementById("input-int").value;
+    var strInput = document.getElementById("input-str").value;
+
+    // Write data to Firebase
+    databaseFloat.set(parseFloat(floatInput));
+    databaseInt.set(parseInt(intInput, 10));
+    databaseStr.set(strInput);
+}
