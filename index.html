@@ -1,49 +1,33 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Firebase Web App</title>
-
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-        https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
-<script>
-        // REPLACE WITH YOUR web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyDseApAyK9MK1SnpCJcYeuEhYFlRmpeJ3E",
-            authDomain: "deneme-veri.firebaseapp.com",
-            databaseURL: "https://deneme-veri-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "deneme-veri",
-            storageBucket: "deneme-veri.appspot.com",
-            messagingSenderId: "672104936066",
-            appId: "1:672104936066:web:06ca15b3d380a5571b3a9b",
-            measurementId: "G-ETDRMRQ7B7"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        var database = firebase.database();
-    </script>
-
-    <script src="app.js" defer></script>
-
+    <title>JSON Data Display</title>
 </head>
 <body>
-    <h1>Firebase Web App Example</h1>
-    <p>Reading int: <span id="reading-int"></span></p>
-    <p>Reading float: <span id="reading-float"></span></p>
-    <p>Reading str: <span id="reading-str"></span></p>
 
-    <!-- Add input fields for user input -->
-    <input type="number" id="input-float" placeholder="Enter Float">
-    <input type="number" id="input-int" placeholder="Enter Int">
-    <input type="text" id="input-str" placeholder="Enter String">
-    <button onclick="writeData()">Write Data</button>
+    <div id="json-data"></div>
+
+    <script>
+        // Fetch JSON data from the URL
+        fetch('https://deneme-veri-default-rtdb.europe-west1.firebasedatabase.app/inverter_1.json')
+            .then(response => response.json())
+            .then(data => {
+                // Process the retrieved JSON data
+                const jsonDataContainer = document.getElementById('json-data');
+                jsonDataContainer.innerHTML = '<h2>JSON Data:</h2>';
+                
+                // Loop through the JSON properties and display them
+                for (const [key, value] of Object.entries(data)) {
+                    jsonDataContainer.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching JSON:', error);
+            });
+    </script>
+
 </body>
 </html>
