@@ -30,11 +30,11 @@
                 });
         }
 
-        // Initial fetch and display
-        fetchAndDisplayData();
-
         // Set interval to update every 4 seconds
         setInterval(fetchAndDisplayData, 4000);
+
+        // Initial fetch and display after a short delay
+        setTimeout(fetchAndDisplayData, 1000);
     </script>
 
 </body>
