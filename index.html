@@ -11,22 +11,30 @@
     <div id="json-data"></div>
 
     <script>
-        // Fetch JSON data from the URL
-        fetch('https://deneme-veri-default-rtdb.europe-west1.firebasedatabase.app/inverter_1.json')
-            .then(response => response.json())
-            .then(data => {
-                // Process the retrieved JSON data
-                const jsonDataContainer = document.getElementById('json-data');
-                jsonDataContainer.innerHTML = '<h2>JSON Data:</h2>';
-                
-                // Loop through the JSON properties and display them
-                for (const [key, value] of Object.entries(data)) {
-                    jsonDataContainer.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching JSON:', error);
-            });
+        // Function to fetch and display JSON data
+        function fetchAndDisplayData() {
+            fetch('https://deneme-veri-default-rtdb.europe-west1.firebasedatabase.app/inverter_1')
+                .then(response => response.json())
+                .then(data => {
+                    // Process the retrieved JSON data
+                    const jsonDataContainer = document.getElementById('json-data');
+                    jsonDataContainer.innerHTML = '<h2>JSON Data:</h2>';
+                    
+                    // Loop through the JSON properties and display them
+                    for (const [key, value] of Object.entries(data)) {
+                        jsonDataContainer.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching JSON:', error);
+                });
+        }
+
+        // Initial fetch and display
+        fetchAndDisplayData();
+
+        // Set interval to update every 4 seconds
+        setInterval(fetchAndDisplayData, 4000);
     </script>
 
 </body>
