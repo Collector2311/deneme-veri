@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JSON Data Display</title>
+    <title>Inverter Registers</title>
 </head>
 <body>
 
@@ -30,11 +30,11 @@
                 });
         }
 
-        // Set interval to update every 4 seconds
-        setInterval(fetchAndDisplayData, 4000);
+        // Set interval to update every 24 hours
+        setInterval(fetchAndDisplayData, 24 * 60 * 60 * 1000);
 
-        // Initial fetch and display after a short delay
-        setTimeout(fetchAndDisplayData, 1000);
+        // Initial fetch and display
+        fetchAndDisplayData();
     </script>
 
 </body>
