@@ -1,41 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inverter Registers</title>
+    <title>Your Webpage</title>
 </head>
 <body>
 
-    <div id="json-data"></div>
+    <!-- This is where the embedded content will be displayed -->
+    <iframe src="http://192.168.20.39/" width="100%" height="600px" frameborder="0"></iframe>
 
-    <script>
-        // Function to fetch and display JSON data
-        function fetchAndDisplayData() {
-            fetch('https://deneme-veri-default-rtdb.europe-west1.firebasedatabase.app/inverter_1.json')
-                .then(response => response.json())
-                .then(data => {
-                    // Process the retrieved JSON data
-                    const jsonDataContainer = document.getElementById('json-data');
-                    jsonDataContainer.innerHTML = '<h2>Inverter Deger</h2>';
-                    
-                    // Loop through the JSON properties and display them
-                    for (const [key, value] of Object.entries(data)) {
-                        jsonDataContainer.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error fetching JSON:', error);
-                });
-        }
-
-        // Set interval to update every 24 hours
-        setInterval(fetchAndDisplayData, 24 * 60 * 60 * 1000);
-
-        // Initial fetch and display
-        fetchAndDisplayData();
-    </script>
+    <!-- Additional content on your webpage can go here -->
 
 </body>
 </html>
+
